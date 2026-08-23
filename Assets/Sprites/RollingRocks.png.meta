@@ -217,8 +217,8 @@ TextureImporter:
       name: RollingRocks_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 64
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -239,8 +239,8 @@ TextureImporter:
       name: RollingRocks_5
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
+        x: 80
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -261,8 +261,8 @@ TextureImporter:
       name: RollingRocks_6
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 96
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -283,8 +283,8 @@ TextureImporter:
       name: RollingRocks_7
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
+        x: 112
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -306,7 +306,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -328,7 +328,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -350,7 +350,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -372,7 +372,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -393,7 +393,7 @@ TextureImporter:
       name: RollingRocks_12
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 16
         width: 16
         height: 16
@@ -415,7 +415,7 @@ TextureImporter:
       name: RollingRocks_13
       rect:
         serializedVersion: 2
-        x: 80
+        x: 16
         y: 16
         width: 16
         height: 16
@@ -437,7 +437,7 @@ TextureImporter:
       name: RollingRocks_14
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 16
         width: 16
         height: 16
@@ -459,7 +459,7 @@ TextureImporter:
       name: RollingRocks_15
       rect:
         serializedVersion: 2
-        x: 112
+        x: 48
         y: 16
         width: 16
         height: 16
@@ -481,8 +481,8 @@ TextureImporter:
       name: RollingRocks_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -503,8 +503,8 @@ TextureImporter:
       name: RollingRocks_17
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
+        x: 80
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -525,8 +525,8 @@ TextureImporter:
       name: RollingRocks_18
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 96
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -547,8 +547,8 @@ TextureImporter:
       name: RollingRocks_19
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
+        x: 112
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -569,7 +569,7 @@ TextureImporter:
       name: RollingRocks_20
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -591,7 +591,7 @@ TextureImporter:
       name: RollingRocks_21
       rect:
         serializedVersion: 2
-        x: 80
+        x: 16
         y: 0
         width: 16
         height: 16
@@ -613,7 +613,7 @@ TextureImporter:
       name: RollingRocks_22
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 0
         width: 16
         height: 16
@@ -635,7 +635,7 @@ TextureImporter:
       name: RollingRocks_23
       rect:
         serializedVersion: 2
-        x: 112
+        x: 48
         y: 0
         width: 16
         height: 16
@@ -649,6 +649,94 @@ TextureImporter:
       bones: []
       spriteID: 4d3471be4933c0d43b60da40e9b9bee3
       internalID: 1560512857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollingRocks_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ad29d09c4c9e94cb5bfddff8a89b80
+      internalID: 1325517104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollingRocks_25
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 706fe5c5307c19b4a92c7402a68bee16
+      internalID: 2079766160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollingRocks_26
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60e85a2a96c967c4da3fdddc0de3e09a
+      internalID: -690207474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollingRocks_27
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b0c5f1988996a1428a5b2a3f6ed4e4a
+      internalID: 231744974
       vertices: []
       indices: 
       edges: []
@@ -686,6 +774,10 @@ TextureImporter:
       RollingRocks_21: 1201686964
       RollingRocks_22: 1922969128
       RollingRocks_23: 1560512857
+      RollingRocks_24: 1325517104
+      RollingRocks_25: 2079766160
+      RollingRocks_26: -690207474
+      RollingRocks_27: 231744974
       RollingRocks_3: 342251142
       RollingRocks_4: -785349724
       RollingRocks_5: 1139051200
