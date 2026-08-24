@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 // TODO: All commented out sections are an attempt to use a class for the task, comeback to it later
@@ -26,6 +27,11 @@ public class LevelManager : MonoBehaviour
     [Header("Level Setup")]
     [SerializeField] private EndTileController[] tasks;
 
+    [Header("Gepeto Settings")]
+    [Tooltip("Make sure the string name corresponds to the folder name")]
+    [SerializeField] private string levelName = "Level_01";
+    [SerializeField] private GepetoAI gepetoAI;
+
     //private Task[] _myTasks;
     private bool[] _completedTasks;
 
@@ -46,11 +52,19 @@ public class LevelManager : MonoBehaviour
 
         if (tasks.Length == 0)
         {
-            Debug.LogWarning("There are no tasks, please check the level again!");
+            Debug.LogWarning("[LevelManageg] There are no tasks, please check the level again!");
             return;
         }
 
         SetTaskIDs();
+
+        if (gepetoAI == null)
+        {
+            Debug.LogWarning("[LevelManageg] The chat is gone! Bring it back!");
+            return;
+        }
+
+        gepetoAI.InitializeAI(levelName);
     }
 
     private void SetTaskIDs()
@@ -91,11 +105,11 @@ public class LevelManager : MonoBehaviour
 
         if (allCompleted)
         {
-            Debug.Log("All tasks are completed, Level Finished!");
+            Debug.Log("[LevelManageg] All tasks are completed, Level Finished!");
         }
         else
         {
-            Debug.Log("Some tasks are not complete yet!");
+            Debug.Log("[LevelManageg] Some tasks are not complete yet!");
         }
     }
 }
