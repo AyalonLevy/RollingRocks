@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.IsPaused) return;
+
         _rb.MovePosition(_rb.position + moveSpeed * Time.fixedDeltaTime * _movement);
     }
 

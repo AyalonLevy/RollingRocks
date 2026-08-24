@@ -3,7 +3,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class GepetoAI : MonoBehaviour
@@ -20,6 +22,9 @@ public class GepetoAI : MonoBehaviour
 
     private List<string> chatTexts = new();
     private string introChatText;
+    private int chatIdx = 0;
+
+    private Coroutine _chatCoroutine;
 
     // Chat files location
     private const string ResourcesBasePath = "AI_Text"; // The folder inside Resources that has all the Chat text
@@ -87,7 +92,7 @@ public class GepetoAI : MonoBehaviour
             writer = text;
             _tmpProText.text = "";
 
-            StartCoroutine(TypeWriterTMP());
+            _chatCoroutine = StartCoroutine(TypeWriterTMP());
         }
     }
 
@@ -139,8 +144,7 @@ public class GepetoAI : MonoBehaviour
             removedLead = true;
             yield return new WaitForSeconds(timeBetweenChars);
 
-            Canvas.ForceUpdateCanvases();
-            scrollRect.verticalNormalizedPosition = 0.0f;
+            ScrollToBottom();
         }
 
         if (leadingChar != "")
@@ -149,10 +153,30 @@ public class GepetoAI : MonoBehaviour
         }
     }
 
+    private void ScrollToBottom()
+    {
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 0.0f;
+    }
+
     public void HelpRequired()
     {
-        // When the help button is pressed it will call this function
+        // If the Coroutine it will stop the old one and start a new one
+        if (_chatCoroutine != null)
+        {
+            StopCoroutine(_chatCoroutine);
+        }
+
+        // OR
+
+        // Wait for the coroutine to stop and prevent the button from working - pop-up a angry message after a few attempts
 
         Debug.Log("[GepetoAI] Help is coming!");
+
+        int idx = chatIdx % chatTexts.Count;
+
+        Debug.Log($"Chat index: {idx}");
+
+        TypeChatText(chatTexts[idx]);
     }
 }
