@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class RockMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 }

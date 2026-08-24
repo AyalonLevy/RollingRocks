@@ -127,7 +127,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: RollingRocks
     originalName: 
-    pivot: {x: 0.50793654, y: 0}
+    pivot: {x: 0.503937, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -135,8 +135,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 126
-      height: 64
+      width: 127
+      height: 128
     spriteID: 3120359910bfcf44fa17543b1d5bfa14
     spriteBone: []
     spriteOutline: []
@@ -167,8 +167,8 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 0
-        width: 126
-        height: 64
+        width: 127
+        height: 128
       spriteId: 3120359910bfcf44fa17543b1d5bfa14
     linkedCells: []
     tileCells: []
@@ -178,5 +178,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 256, y: 128}
-  canvasSize: {x: 128, y: 64}
+  previousTextureSize: {x: 256, y: 256}
+  canvasSize: {x: 128, y: 128}
