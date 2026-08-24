@@ -481,8 +481,8 @@ TextureImporter:
       name: RollingRocks_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -503,7 +503,7 @@ TextureImporter:
       name: RollingRocks_17
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -525,7 +525,7 @@ TextureImporter:
       name: RollingRocks_18
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
         width: 16
         height: 16
@@ -539,6 +539,28 @@ TextureImporter:
       bones: []
       spriteID: a7f4b402dc1124144b7e58c1d197ab4b
       internalID: 50744966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollingRocks_19
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c5bae9dc26ca544ae96cb22e9d1d10
+      internalID: 1812863622
       vertices: []
       indices: 
       edges: []
@@ -570,6 +592,7 @@ TextureImporter:
       RollingRocks_16: 219243116
       RollingRocks_17: 438809928
       RollingRocks_18: 50744966
+      RollingRocks_19: 1812863622
       RollingRocks_2: -1111295455
       RollingRocks_3: 342251142
       RollingRocks_4: -785349724
