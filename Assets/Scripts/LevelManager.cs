@@ -16,6 +16,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float timeInMinutes = 10.5f;
     [SerializeField] private GepetoAI gepetoAI;
 
+    [Header("End Of Level Settings")]
+    [SerializeField] private GameObject endOfLevelMenu;
+    [SerializeField] private ParticleSystem endOfGameFlare;
+
     private bool[] _completedTasks;
 
     private void Awake()
@@ -28,6 +32,8 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        InitializeLevel();
     }
 
     public void InitializeLevel()
@@ -51,6 +57,11 @@ public class LevelManager : MonoBehaviour
         }
 
         gepetoAI.InitializeAI(levelName);
+
+        if (endOfLevelMenu != null)
+        {
+            endOfLevelMenu.SetActive(false);
+        }
 
         UIManager.Instance.InitializeUI(levelName, timeInMinutes * 60);
     }
@@ -86,6 +97,10 @@ public class LevelManager : MonoBehaviour
         if (allCompleted)
         {
             Debug.Log("[LevelManageg] All tasks are completed, Level Finished!");
+
+            endOfLevelMenu.SetActive(true);
+            endOfGameFlare.Play();
+
             GameManager.Instance.EndLevel();
         }
         else
