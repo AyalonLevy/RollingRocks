@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameObject settingsMenu;
-    
+
+    private int _totalScenes;  // Last scene will be the End of Game Scene
 
     private bool _isPaused = false;
     public bool IsPaused { get { return _isPaused; } }
@@ -20,8 +21,9 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
+
+        _totalScenes = SceneManager.sceneCountInBuildSettings;
     }
 
     private void InitLevel()
@@ -39,8 +41,8 @@ public class GameManager : MonoBehaviour
         if (isNewGame)
         {
             // Load the first level
-            //SceneManager.LoadScene()
             Debug.Log("Start from the beginning");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         Debug.Log("[GameManager] Go to Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartLevel()
@@ -91,6 +94,11 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         Debug.Log("[GameManager] Load next level");
+        Debug.Log($"Total scenes: {_totalScenes}");
+        if (SceneManager.GetActiveScene().buildIndex == _totalScenes - 1)
+        {
+            Debug.Log("The last Scene!");
+        }
     }
 
     public void QuitGame()

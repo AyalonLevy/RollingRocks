@@ -1,5 +1,6 @@
 using System;
 using System.Reflection.Metadata.Ecma335;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -32,13 +33,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void InitializeUI(string name, float time)
-    {
-        _timeLeft = time;
-        levelName.text = name.Replace("_", " ");
-        UpdateTime();
-    }
-
     private void Update()
     {
         if (Time.time - _lastUpdate > _timeUpdateInterval)
@@ -50,9 +44,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void InitializeUI(string name, float time)
+    {
+        _timeLeft = time;
+        levelName.text = name.Replace("_", " ");
+        UpdateTime();
+    }
+
     private void UpdateTime()
     {
         _lastUpdate = Time.time;
         timer.text = TimeSpan.FromSeconds(_timeLeft).ToString("mm\\:ss");
+    }
+
+    public string GetTime()
+    {
+        return timer.text;
     }
 }

@@ -1,4 +1,4 @@
-// Inspired by Nick Hwang https://github.com/rioter00/UnityExamples/blob/master/typewriterUI.cs
+// Typwriter inspired by Nick Hwang https://github.com/rioter00/UnityExamples/blob/master/typewriterUI.cs
 
 using System.Collections;
 using System.Collections.Generic;

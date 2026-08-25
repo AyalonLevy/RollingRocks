@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -19,6 +20,7 @@ public class LevelManager : MonoBehaviour
     [Header("End Of Level Settings")]
     [SerializeField] private GameObject endOfLevelMenu;
     [SerializeField] private ParticleSystem endOfGameFlare;
+    [SerializeField] private TMP_Text finalTimeText;
 
     private bool[] _completedTasks;
 
@@ -32,7 +34,9 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
         }
-
+    }
+    private void Start()
+    {
         InitializeLevel();
     }
 
@@ -97,6 +101,8 @@ public class LevelManager : MonoBehaviour
         if (allCompleted)
         {
             Debug.Log("[LevelManageg] All tasks are completed, Level Finished!");
+
+            finalTimeText.text = UIManager.Instance.GetTime();
 
             endOfLevelMenu.SetActive(true);
             endOfGameFlare.Play();
