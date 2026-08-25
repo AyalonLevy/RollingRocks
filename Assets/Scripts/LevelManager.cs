@@ -1,24 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: All commented out sections are an attempt to use a class for the task, comeback to it later
-
-//public class Task
-//{
-//    public int id;
-//    public bool isComplete;
-
-//    public void InitTask(int id)
-//    {
-//        this.id = id;
-//        isComplete = false;
-//    }
-
-//    public void CompleteTask()
-//    {
-//        isComplete = true;
-//    }
-//}
 
 public class LevelManager : MonoBehaviour
 {
@@ -30,9 +12,10 @@ public class LevelManager : MonoBehaviour
     [Header("Gepeto Settings")]
     [Tooltip("Make sure the string name corresponds to the folder name")]
     [SerializeField] private string levelName = "Level_01";
+    [Tooltip("The time to complete the level - not really, just to show as if")]
+    [SerializeField] private float timeInMinutes = 10.5f;
     [SerializeField] private GepetoAI gepetoAI;
 
-    //private Task[] _myTasks;
     private bool[] _completedTasks;
 
     private void Awake()
@@ -45,7 +28,10 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
 
+    public void InitializeLevel()
+    {
         // Find all EndTileController in the scene
         tasks = FindObjectsByType<EndTileController>();
         _completedTasks = new bool[tasks.Length];
@@ -65,16 +51,16 @@ public class LevelManager : MonoBehaviour
         }
 
         gepetoAI.InitializeAI(levelName);
+
+        UIManager.Instance.InitializeUI(levelName, timeInMinutes * 60);
     }
 
     private void SetTaskIDs()
     {
         for (int i = 0; i < tasks.Length; i++)
         {
-            tasks[i].SetTaskId(i);
+            tasks[i].TaskID = i;
             _completedTasks[i] = false;
-
-            //_myTasks[i].InitTask(i);
         }
     }
 
@@ -82,18 +68,12 @@ public class LevelManager : MonoBehaviour
     {
         _completedTasks[taskId] = true;
 
-        //_myTasks[taskId].CompleteTask();
         CompleteLevel();
     }
 
     private void CompleteLevel()
     {
         bool allCompleted = true;
-        //foreach (Task task in _myTasks)
-        //{
-        //    if (!task.isComplete)
-        //        allCompleted = false;
-        //}
 
         foreach (var task in _completedTasks)
         {
@@ -106,6 +86,7 @@ public class LevelManager : MonoBehaviour
         if (allCompleted)
         {
             Debug.Log("[LevelManageg] All tasks are completed, Level Finished!");
+            GameManager.Instance.EndLevel();
         }
         else
         {

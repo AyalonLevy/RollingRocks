@@ -1,45 +1,28 @@
-using System;
 using UnityEngine;
 
-public class EndTileController : MonoBehaviour
+public class EndTileController : HiddenController
 {
-    [Header("Tile Settings")]
+    [Header("Target Settings")]
     [SerializeField] private GameObject target;
-    [SerializeField] private Sprite realTile;
     [SerializeField] private float targetScaleFactor = 0.9f;
 
-    [Header("Hint Animation Settings")]
-    [SerializeField] private float animationInterval = 60.0f;
-    [SerializeField] private float intervalShrinkingFactor = 5.0f;
-    [SerializeField] private float minInterval = 5.0f;
-    
+    private Rigidbody2D _targetRB;
 
-    private Animator _animator;
-    private SpriteRenderer _spriteRenderer;
-    private float _intervalStartTime;
-    private bool _playHintAnimation = true;
-    private int _taskID;
+    public int TaskID { get; set; }
 
-    public void SetTaskId(int id) => _taskID = id;
-    public int GetTaskId() => _taskID;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() 
+    private void Awake()
     {
-        _animator = GetComponent<Animator>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        _intervalStartTime = Time.time;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (_playHintAnimation)
+        if (target != null)
         {
-            PlayAnimation();
+            _targetRB = target.GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            Debug.LogWarning($"[EndTileController] {target.name} has no Rigidbody attached!");
+            return;
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -53,30 +36,13 @@ public class EndTileController : MonoBehaviour
     private void TargetReached()
     {
         // Disable the animator because it is controlling the SpriteRenderer
-        _animator.enabled = false;
-
-        _spriteRenderer.sprite = realTile;
-        _spriteRenderer.color = Color.white;
-
-        _playHintAnimation = false;
+        RevealTruth();
 
         target.transform.position = transform.position;
         target.transform.localScale = Vector3.one * targetScaleFactor;
-        target.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        _targetRB.bodyType = RigidbodyType2D.Static;
 
         // Update the GameManager know that this task was performed
-        LevelManager.Instance.TaskComplete(_taskID);
-    }
-
-    private void PlayAnimation()
-    {
-        if (_animator == null) return;
-
-        if (Time.time - _intervalStartTime > animationInterval)
-        {
-            _animator.Play("Hint", -1, 0.0f);
-            _intervalStartTime = Time.time;
-            animationInterval = animationInterval > minInterval ? animationInterval - intervalShrinkingFactor : animationInterval;
-        }
+        LevelManager.Instance.TaskComplete(TaskID);
     }
 }

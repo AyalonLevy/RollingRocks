@@ -3,26 +3,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class GepetoAI : MonoBehaviour
 {
     [Header("Typewriter Settings")]
-    [SerializeField] private TMP_Text _tmpProText;
+    [SerializeField] private TMP_Text textField;
     [SerializeField] private float delayBeforeStart = 0.0f;
     [SerializeField] private float timeBetweenChars = 0.1f;
     [SerializeField] private string leadingChar = "";
     [SerializeField] private bool leadingCharBeforeDelay = false;
     [SerializeField] private ScrollRect scrollRect;
 
+    [Header("AI Settings")]
+    [SerializeField] private int maxButtonClicks = 10;
+
     private string writer;
 
-    private List<string> chatTexts = new();
-    private string introChatText;
-    private int chatIdx = 0;
+    private List<string> _chatTexts = new();
+    private string _introChatText;
+    private int _chatIdx = 0;
+    private int _buttonPressedCounter = 0;
 
     private Coroutine _chatCoroutine;
 
@@ -35,16 +37,16 @@ public class GepetoAI : MonoBehaviour
     {
         LoadLevelChats(levelName);
 
-        TypeChatText(introChatText);
+        TypeChatText(_introChatText);
     }
 
     private void LoadLevelChats(string levelFolderName)
     {
         string levelPath = $"{ResourcesBasePath}/{levelFolderName}";
 
-        introChatText = LoadTextFile($"{levelPath}/{IntroFileName}");
+        _introChatText = LoadTextFile($"{levelPath}/{IntroFileName}");
 
-        chatTexts.Clear();
+        _chatTexts.Clear();
         int idx = 1;
 
         while (true)
@@ -55,7 +57,7 @@ public class GepetoAI : MonoBehaviour
             // Stop when the file doesn't exist
             if (textAsset == null) break;
 
-            chatTexts.Add(textAsset.text);
+            _chatTexts.Add(textAsset.text);
             idx++;
         }
     }
@@ -87,10 +89,10 @@ public class GepetoAI : MonoBehaviour
 
     public void TypeChatText(string text)
     {
-        if (_tmpProText != null)
+        if (textField != null)
         {
             writer = text;
-            _tmpProText.text = "";
+            textField.text = "";
 
             _chatCoroutine = StartCoroutine(TypeWriterTMP());
         }
@@ -98,7 +100,7 @@ public class GepetoAI : MonoBehaviour
 
     IEnumerator TypeWriterTMP()
     {
-        _tmpProText.text = leadingCharBeforeDelay ? leadingChar : "";
+        textField.text = leadingCharBeforeDelay ? leadingChar : "";
 
         yield return new WaitForSeconds(delayBeforeStart);
 
@@ -112,17 +114,17 @@ public class GepetoAI : MonoBehaviour
             {
                 skipChars = true;
 
-                if (_tmpProText.text.Length > 0 && removedLead)
+                if (textField.text.Length > 0 && removedLead)
                 {
-                    _tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - leadingChar.Length);
+                    textField.text = textField.text.Substring(0, textField.text.Length - leadingChar.Length);
                     removedLead = false;
                 }
             }
-            
+
             if (c == '>')
             {
                 skipChars = false;
-                _tmpProText.text += richTextSection;
+                textField.text += richTextSection;
                 richTextSection = "";
             }
 
@@ -133,14 +135,14 @@ public class GepetoAI : MonoBehaviour
                 continue;
             }
 
-            if (_tmpProText.text.Length > 0 && removedLead)
+            if (textField.text.Length > 0 && removedLead)
             {
-                _tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - leadingChar.Length);
+                textField.text = textField.text.Substring(0, textField.text.Length - leadingChar.Length);
                 removedLead = false;
             }
 
-            _tmpProText.text += c;
-            _tmpProText.text += leadingChar;
+            textField.text += c;
+            textField.text += leadingChar;
             removedLead = true;
             yield return new WaitForSeconds(timeBetweenChars);
 
@@ -149,7 +151,7 @@ public class GepetoAI : MonoBehaviour
 
         if (leadingChar != "")
         {
-            _tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - leadingChar.Length);
+            textField.text = textField.text.Substring(0, textField.text.Length - leadingChar.Length);
         }
     }
 
@@ -171,12 +173,16 @@ public class GepetoAI : MonoBehaviour
 
         // Wait for the coroutine to stop and prevent the button from working - pop-up a angry message after a few attempts
 
-        Debug.Log("[GepetoAI] Help is coming!");
+        _buttonPressedCounter++;
 
-        int idx = chatIdx % chatTexts.Count;
+        if (_buttonPressedCounter > maxButtonClicks)
+        {
+            // Send an angry message
+            Debug.Log("Stop bothering me!!!!");
+        }
 
-        Debug.Log($"Chat index: {idx}");
+        int idx = _chatIdx % _chatTexts.Count;
 
-        TypeChatText(chatTexts[idx]);
+        TypeChatText(_chatTexts[idx]);
     }
 }

@@ -42,14 +42,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Holes
+  - name: Hole
     uniqueID: 783173083
     locked: 0
-  - name: Rocks
+  - name: Rock
     uniqueID: 3773686255
+    locked: 0
+  - name: Collectable
+    uniqueID: 1509450555
     locked: 0
   - name: Player
     uniqueID: 500404241
+    locked: 0
+  - name: Hint
+    uniqueID: 428992793
+    locked: 0
+  - name: UI
+    uniqueID: 138648587
     locked: 0
   m_RenderingLayers:
   - Default

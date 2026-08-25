@@ -1,5 +1,5 @@
 <smallcaps>Greetings! I'm </smallcaps>Gepeto-A.I.<smallcaps> and I'll be your helpful and trusty helper. 
-As a new player let's start with the basics. All you have to do is Roll the Rock to the Hole. Here we have a simple task to get you started.
+As a new player let's start with the basics. Here we have a simple task to get you started, all you have to do is Roll the Rock to the Hole.
 Use </smallcaps><color=#333><b>wasd</b></color><smallcaps> or the </smallcaps><color=#333><b>arrow keys</b></color><smallcaps> to move.
 Rocks can only be pushed and not pulled, keep this in mind when solving the levels.
 If you need any help, Don't hasitate to press the button and I'll help you.</smallcaps>

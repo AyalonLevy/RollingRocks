@@ -503,8 +503,8 @@ TextureImporter:
       name: RollingRocks_17
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 80
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -525,7 +525,7 @@ TextureImporter:
       name: RollingRocks_18
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -547,7 +547,7 @@ TextureImporter:
       name: RollingRocks_19
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
         width: 16
         height: 16
@@ -561,6 +561,50 @@ TextureImporter:
       bones: []
       spriteID: 11c5bae9dc26ca544ae96cb22e9d1d10
       internalID: 1812863622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollingRocks_20
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1654b00d2a9c17c4ca3b03b37aa24a50
+      internalID: -1792665148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RollingRocks_21
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2050a4289c60a8447b7c0e73833a4f5e
+      internalID: -1901930568
       vertices: []
       indices: 
       edges: []
@@ -594,6 +638,8 @@ TextureImporter:
       RollingRocks_18: 50744966
       RollingRocks_19: 1812863622
       RollingRocks_2: -1111295455
+      RollingRocks_20: -1792665148
+      RollingRocks_21: -1901930568
       RollingRocks_3: 342251142
       RollingRocks_4: -785349724
       RollingRocks_5: 1139051200
