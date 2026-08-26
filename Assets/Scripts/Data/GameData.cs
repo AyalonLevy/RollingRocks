@@ -3,14 +3,14 @@ public class GameData
 {
     public int maxUnlockedLevel;
     public bool useWASD;
-    public bool muteMusic;
-    public bool muteEffects;
+    public float musicVolume;
+    public float sfxVolume;
 
-    public GameData(int maxUnlockedLevel = 1, bool useWASD = false, bool muteMusic = false, bool muteEffects = false)
+    public GameData(int maxUnlockedLevel = 1, bool useWASD = false, float musicVolume = 0.5f, float sfxVolume = 0.8f)
     {
         this.maxUnlockedLevel = maxUnlockedLevel;
         this.useWASD = useWASD;
-        this.muteMusic = muteMusic;
-        this.muteEffects = muteEffects;
+        this.musicVolume = musicVolume;
+        this.sfxVolume = sfxVolume;
     }
 }

@@ -1,4 +1,1 @@
-<smallcaps>Amazing! you solved the last puzzle. I knew that a great player like you could do it easily.
-As you've seen in the previous level, the hole was a lie and the real hole was hidden as a simple tile. Don't trust holes, they are tricky, in contrast an A.I. like me is always reliable, you can trust me.
-In this puzzle you have to place the rocks in the holes based on the colour markings. For example a rock marked with red will go to the hole marked with red.
-Give it a go, I'm sure you'll solve it in no time!</smallcaps>
+<smallcaps>In this puzzle you have to place the rocks in the holes based on the colour markings. Give it a go, I'm sure you'll solve it in no time!</smallcaps>

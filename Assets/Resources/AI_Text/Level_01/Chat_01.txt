@@ -1,2 +1,1 @@
-<smallcaps>My apologies, I appologies for my mistake, the creator must have not the standard </smallcaps><color=#333><b>wasd</b></color><smallcaps> settings.
-Of course that an experienced player like you understand that some definitions should not be changed.</smallcaps>
+<smallcaps>Try Using <b>D</b> or the <b>Left Arrow</b> to move towards the rock, start with a small step, as Buzz always say “One small step for you will bring you closer to me”</smallcaps>

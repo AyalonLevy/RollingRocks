@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,17 +7,22 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5.0f;
 
+    [Header("Audio Settings")]
+    [SerializeField] private List<AudioClip> clips = new();
+
     private Vector2 _movement;
 
     private Rigidbody2D _rb;
     private Animator _animator;
     private PlayerInput _playerInput;
+    private AudioSource _audioSource;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _playerInput = GetComponent<PlayerInput>();
+        _audioSource = GetComponent<AudioSource>();
 
         SetControls(GameManager.Instance.UseWASD);
     }
@@ -40,6 +46,25 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.MovePosition(_rb.position + moveSpeed * Time.fixedDeltaTime * _movement);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            int idx = Random.Range(0, clips.Count);
+
+            _audioSource.clip = clips[idx];
+            _audioSource.Play();
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            _audioSource.Stop();
+        }
     }
 
     public void Move(InputAction.CallbackContext context)

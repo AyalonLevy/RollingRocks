@@ -1,0 +1,3 @@
+<smallcaps>Congratulations! You have finished this level. I never thought that the walls would betray us like that… Good thing that nothing fazes you and you keep a cool head. I am pretty sure that now you’re ready for anything this game will throw at you!
+This was the end of the tutorial <i><color=#B8B8B8>(at least that’s what the script say)</color></i>
+Now nothing can stop you, not even walls!</smallcaps>

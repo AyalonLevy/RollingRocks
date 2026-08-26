@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameObject settingsMenu;
+    public GepetoAI gepetoAI;
 
     [HideInInspector] public GameData gameData;
 
@@ -54,6 +55,12 @@ public class GameManager : MonoBehaviour
         gameData = SaveSystem.LoadData();
         gameData ??= new GameData();
         UseWASD = gameData.useWASD;
+
+        if (gepetoAI != null && SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            // Only initialize the AI when it's in the main menu
+            gepetoAI.InitializeAI("MainMenu");
+        }
     }
 
     public GameData GetGameData()

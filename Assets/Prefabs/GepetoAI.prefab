@@ -840,7 +840,7 @@ MonoBehaviour:
     Rock to the Hole.\r\nUse </smallcaps><color=#333><b>wasd</b></color><smallcaps>
     or the </smallcaps><color=#333><b>arrow keys</b></color><smallcaps> to move.\r\nRocks
     can only be pushed and not pulled, keep this in mind when solving the levels.\r\nIf
-    you need any help, Don't hasitate to press the button and I'll help you.</smallcaps>"
+    you need any help, Don't hasitate to press the button and I'll help you.</smallcaps>\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6aa118983ff91db4b8c1033dcbc50789, type: 2}
   m_sharedMaterial: {fileID: -6445541450595043706, guid: 6aa118983ff91db4b8c1033dcbc50789, type: 2}
@@ -1336,9 +1336,9 @@ Canvas:
   m_GameObject: {fileID: 8946424881183597645}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1348,7 +1348,7 @@ Canvas:
   m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 138648587
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &5173836479339765151
@@ -1409,3 +1409,4 @@ MonoBehaviour:
   leadingChar: '|'
   leadingCharBeforeDelay: 0
   scrollRect: {fileID: 1281013449416396836}
+  maxButtonClicks: 6

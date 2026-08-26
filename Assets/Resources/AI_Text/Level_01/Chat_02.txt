@@ -1,1 +1,1 @@
-<smallcaps>You are right to be frustrated, I should have told you about the holes. The rock's colour has to align with the hole color. For example, push the red rock to the red hole.</smallcaps>
+<smallcaps>This sure looks like a big rock, I hope you have enough <b>STR</b> to move it!</smallcaps>

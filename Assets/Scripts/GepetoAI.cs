@@ -22,6 +22,7 @@ public class GepetoAI : MonoBehaviour
     private string writer;
 
     private List<string> _chatTexts = new();
+    private List<string> _angryTexts = new();
     private string _introChatText;
     private int _chatIdx = 0;
     private int _buttonPressedCounter = 0;
@@ -32,12 +33,19 @@ public class GepetoAI : MonoBehaviour
     private const string ResourcesBasePath = "AI_Text"; // The folder inside Resources that has all the Chat text
     private const string IntroFileName = "Intro";       // The text that will be displayed at the start of the level
     private const string SequentialPrefix = "Chat_";    // The prefix to all the different chat text files
+    private const string AngryFolder = "Angry";         // The folder where all the angry texts are located
+    private const string AngryPrefix = "Angry_";        // The prefix to all the different angry text files
 
     public void InitializeAI(string levelName)
     {
         LoadLevelChats(levelName);
+        if (_angryTexts.Count == 0)
+        {
+            LoadAngryTexts();
+        }
 
         TypeChatText(_introChatText);
+        _buttonPressedCounter = 0;
     }
 
     private void LoadLevelChats(string levelFolderName)
@@ -58,6 +66,26 @@ public class GepetoAI : MonoBehaviour
             if (textAsset == null) break;
 
             _chatTexts.Add(textAsset.text);
+            idx++;
+        }
+    }
+
+    private void LoadAngryTexts()
+    {
+        string angryPath = $"{ResourcesBasePath}/{AngryFolder}";
+
+        _angryTexts.Clear();
+        int idx = 1;
+
+        while (true)
+        {
+            string fileName = $"{AngryPrefix}{idx:D2}";
+            TextAsset textAsset = LoadTextAssetFile($"{angryPath}/{fileName}");
+
+            // Stop when the file doesn't exist
+            if (textAsset == null) break;
+
+            _angryTexts.Add(textAsset.text);
             idx++;
         }
     }
@@ -177,12 +205,23 @@ public class GepetoAI : MonoBehaviour
 
         if (_buttonPressedCounter > maxButtonClicks)
         {
-            // Send an angry message
-            Debug.Log("Stop bothering me!!!!");
+            // Send a random angry message
+            int randIdx = Random.Range(0, _angryTexts.Count);
+            TypeChatText(_angryTexts[randIdx]);
+            return;
         }
 
-        int idx = _chatIdx % _chatTexts.Count;
+        if (_chatTexts.Count == 0)
+        {
+            TypeChatText(_introChatText);
+        }
+        else
+        {
+            // Use the modulo to cycle through the chats forever
+            int idx = _chatIdx % _chatTexts.Count;
+            TypeChatText(_chatTexts[idx]);
 
-        TypeChatText(_chatTexts[idx]);
+            _chatIdx++;
+        }
     }
 }
