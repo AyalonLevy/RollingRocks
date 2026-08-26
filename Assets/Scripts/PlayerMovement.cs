@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,11 +10,31 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D _rb;
     private Animator _animator;
+    private PlayerInput _playerInput;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _playerInput = GetComponent<PlayerInput>();
+
+        SetControls(GameManager.Instance.UseWASD);
+    }
+
+    private void OnEnable()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnControlInputChange += SetControls;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnControlInputChange -= SetControls;
+        }
     }
 
     private void FixedUpdate()
@@ -38,5 +57,17 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetFloat("Horizontal", _movement.x);
         _animator.SetFloat("Vertical", _movement.y);
         _animator.SetFloat("Speed", _movement.sqrMagnitude);
+    }
+
+    public void SetControls(bool value)
+    {
+        if (value)
+        {
+            _playerInput.SwitchCurrentActionMap("WASD");
+        }
+        else
+        {
+            _playerInput.SwitchCurrentActionMap("UDLR");
+        }
     }
 }

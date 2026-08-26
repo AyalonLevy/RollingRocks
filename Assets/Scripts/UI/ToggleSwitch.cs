@@ -63,6 +63,10 @@ public class ToggleSwitch : MonoBehaviour, IPointerClickHandler
     protected virtual void Awake()
     {
         SetupToggleComponents();
+
+        CurrentValue = GameManager.Instance.GetGameData().useWASD;
+        sliderValue = CurrentValue ? 1 : 0;
+        _slider.value = sliderValue;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -106,9 +110,9 @@ public class ToggleSwitch : MonoBehaviour, IPointerClickHandler
         {
             while (elapsedTime < animationDuration)
             {
-                elapsedTime += Time.deltaTime;
+                elapsedTime += Time.unscaledDeltaTime;
 
-                float lerpFactor = slideEase.Evaluate(elapsedTime /  animationDuration);
+                float lerpFactor = slideEase.Evaluate(elapsedTime / animationDuration);
                 _slider.value = sliderValue = Mathf.Lerp(startValue, endValue, lerpFactor);
 
                 transidionEffect?.Invoke();

@@ -1,6 +1,5 @@
 // Typwriter inspired by Christina Creates Games https://github.com/Maraakis/ChristinaCreatesGames/blob/main/Toggle%20Switch%20Styling/ToggleSwitchColorChange.cs
 
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 

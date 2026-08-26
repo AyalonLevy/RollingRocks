@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,12 +8,36 @@ public class GameManager : MonoBehaviour
 
     public GameObject settingsMenu;
 
+    [HideInInspector] public GameData gameData;
+
+    private int _currentLevel = 0;
     private int _totalScenes;  // Last scene will be the End of Game Scene
 
     private bool _isPaused = false;
     public bool IsPaused { get { return _isPaused; } }
 
-    private void Start()
+    private bool _useWASD = false;
+    public bool UseWASD
+    {
+        get => _useWASD;
+        set
+        {
+            if (_useWASD != value)
+            {
+                _useWASD = value;
+                OnControlInputChange?.Invoke(_useWASD);
+
+                // Save Settings
+                gameData.useWASD = _useWASD;
+                SaveSystem.SaveData(gameData);
+            }
+        }
+    }
+
+    public event Action<bool> OnControlInputChange;
+
+
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -24,6 +49,16 @@ public class GameManager : MonoBehaviour
         }
 
         _totalScenes = SceneManager.sceneCountInBuildSettings;
+
+        // Load saved data and if there is none, create a new one
+        gameData = SaveSystem.LoadData();
+        gameData ??= new GameData();
+        UseWASD = gameData.useWASD;
+    }
+
+    public GameData GetGameData()
+    {
+        return gameData;
     }
 
     private void InitLevel()
@@ -35,7 +70,7 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1;
     }
-    
+
     public void StartGame(bool isNewGame)
     {
         if (isNewGame)
@@ -48,10 +83,23 @@ public class GameManager : MonoBehaviour
         {
             // Load the most recent level
             Debug.Log("Continue where we left off");
+            SceneManager.LoadScene(gameData.maxUnlockedLevel);
         }
     }
 
-    public void SettingsMenu()
+    public void ToggleGameState()
+    {
+        if (_isPaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
+
+    public void PauseGame()
     {
         Time.timeScale = 0;
         _isPaused = true;
@@ -64,6 +112,7 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
         Time.timeScale = 1;
     }
+
     public void MainMenu()
     {
         Debug.Log("[GameManager] Go to Main Menu");
@@ -93,6 +142,15 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        _currentLevel++;
+        // Save new level to game Data
+        if (_currentLevel > gameData.maxUnlockedLevel)
+        {
+            gameData.maxUnlockedLevel = _currentLevel;
+
+            SaveSystem.SaveData(gameData);
+        }
+
         Debug.Log("[GameManager] Load next level");
         Debug.Log($"Total scenes: {_totalScenes}");
         if (SceneManager.GetActiveScene().buildIndex == _totalScenes - 1)
