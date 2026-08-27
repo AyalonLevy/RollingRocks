@@ -108,7 +108,6 @@ public class GepetoAI : MonoBehaviour
 
         if (asset == null)
         {
-            Debug.Log($"[GepetoAI] Could not find asset at: {path}");
             return null;
         }
 

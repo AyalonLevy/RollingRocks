@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GepetoAI gepetoAI;
 
     [Header("End Of Level Settings")]
+    [SerializeField] private float endOfLevelDelay = 1.0f;
     [SerializeField] private GameObject endOfLevelMenu;
     [SerializeField] private ParticleSystem endOfGameFlare;
     [SerializeField] private TMP_Text finalTimeText;
@@ -102,11 +104,7 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("[LevelManageg] All tasks are completed, Level Finished!");
 
-            finalTimeText.text = UIManager.Instance.GetTime();
-            finalTimeTextShadow.text = finalTimeText.text;
-
-            endOfLevelMenu.SetActive(true);
-            endOfGameFlare.Play();
+            StartCoroutine(EndLevelSequence());
 
             GameManager.Instance.EndLevel();
         }
@@ -114,5 +112,18 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("[LevelManageg] Some tasks are not complete yet!");
         }
+    }
+
+    private IEnumerator EndLevelSequence()
+    {
+        // Wait before showing the Menu
+        // TODO: Add a short victory dance instead of just waiting
+        yield return new WaitForSeconds(endOfLevelDelay);
+
+        finalTimeText.text = UIManager.Instance.GetTime();
+        finalTimeTextShadow.text = finalTimeText.text;
+
+        endOfLevelMenu.SetActive(true);
+        endOfGameFlare.Play();
     }
 }

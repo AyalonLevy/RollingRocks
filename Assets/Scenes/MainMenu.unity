@@ -366,8 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   sounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 8ecf93896af8c664ca26d4b020f65dd0, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: c3dd4624602e25149b4f6bf398d059dc, type: 3}
+    volume: 0.3
     pitch: 1
     loop: 1
     source: {fileID: 0}
