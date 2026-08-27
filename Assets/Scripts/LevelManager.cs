@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject endOfLevelMenu;
     [SerializeField] private ParticleSystem endOfGameFlare;
     [SerializeField] private TMP_Text finalTimeText;
+    [SerializeField] private TMP_Text finalTimeTextShadow;
 
     private bool[] _completedTasks;
 
@@ -102,6 +103,7 @@ public class LevelManager : MonoBehaviour
             Debug.Log("[LevelManageg] All tasks are completed, Level Finished!");
 
             finalTimeText.text = UIManager.Instance.GetTime();
+            finalTimeTextShadow.text = finalTimeText.text;
 
             endOfLevelMenu.SetActive(true);
             endOfGameFlare.Play();

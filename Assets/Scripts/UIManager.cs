@@ -9,7 +9,9 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private TMP_Text levelName;
+    [SerializeField] private TMP_Text levelNameShadow;
     [SerializeField] private TMP_Text timer;
+    [SerializeField] private TMP_Text timerShadow;
 
     [Header("Time settings")]
     [SerializeField] private int minTimeStep = 1;
@@ -46,6 +48,7 @@ public class UIManager : MonoBehaviour
     {
         _timeLeft = time;
         levelName.text = name.Replace("_", " ");
+        levelNameShadow.text = levelName.text;
         UpdateTime();
     }
 
@@ -53,6 +56,7 @@ public class UIManager : MonoBehaviour
     {
         _lastUpdate = Time.time;
         timer.text = TimeSpan.FromSeconds(_timeLeft).ToString("mm\\:ss");
+        timerShadow.text = timer.text;
     }
 
     public string GetTime()
