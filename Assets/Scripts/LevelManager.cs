@@ -120,6 +120,8 @@ public class LevelManager : MonoBehaviour
         // TODO: Add a short victory dance instead of just waiting
         yield return new WaitForSeconds(endOfLevelDelay);
 
+        AudioManager.Instance.Play("Success");
+
         finalTimeText.text = UIManager.Instance.GetTime();
         finalTimeTextShadow.text = finalTimeText.text;
 

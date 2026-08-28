@@ -38,6 +38,8 @@ public class EndTileController : HiddenController
         // Disable the animator because it is controlling the SpriteRenderer
         RevealTruth();
 
+        AudioManager.Instance.Play("RockFall");
+
         target.transform.position = transform.position;
         target.transform.localScale = Vector3.one * targetScaleFactor;
         _targetRB.bodyType = RigidbodyType2D.Static;

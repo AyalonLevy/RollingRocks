@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7772769547803061741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4074178964277639178}
+  - component: {fileID: 360354744034889970}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4074178964277639178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772769547803061741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &360354744034889970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772769547803061741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b3358abeaa9bb49ae4ee28e2d7b1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  typingAudioFolderPath: Audio/TypingSounds
+  typingClipsPrefix: Typing
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: c3dd4624602e25149b4f6bf398d059dc, type: 3}
+    audioMixerGroup: {fileID: 4056906982350304867, guid: 742c93632e4e11041814bc2418c69fef, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Typing
+    clip: {fileID: 8300000, guid: 1d591c2a1209ae04da2564002d2880b6, type: 3}
+    audioMixerGroup: {fileID: 2193367584748641580, guid: 742c93632e4e11041814bc2418c69fef, type: 2}
+    volume: 1
+    pitch: 3
+    loop: 0
+    source: {fileID: 0}
+  - name: RockFall
+    clip: {fileID: 8300000, guid: 6c531c7c0344c4f4db7c085767d152f0, type: 3}
+    audioMixerGroup: {fileID: 2193367584748641580, guid: 742c93632e4e11041814bc2418c69fef, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ScrapingRock
+    clip: {fileID: 8300000, guid: fc56ec08c2e004a4998303d3960cae55, type: 3}
+    audioMixerGroup: {fileID: 2193367584748641580, guid: 742c93632e4e11041814bc2418c69fef, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Success
+    clip: {fileID: 8300000, guid: b996caa411239e248a5479b7f3f6dede, type: 3}
+    audioMixerGroup: {fileID: 2193367584748641580, guid: 742c93632e4e11041814bc2418c69fef, type: 2}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

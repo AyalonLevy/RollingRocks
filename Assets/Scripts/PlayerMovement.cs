@@ -7,22 +7,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5.0f;
 
-    [Header("Audio Settings")]
-    [SerializeField] private List<AudioClip> clips = new();
-
     private Vector2 _movement;
 
     private Rigidbody2D _rb;
     private Animator _animator;
     private PlayerInput _playerInput;
-    private AudioSource _audioSource;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _playerInput = GetComponent<PlayerInput>();
-        _audioSource = GetComponent<AudioSource>();
 
         SetControls(GameManager.Instance.UseWASD);
     }
@@ -52,10 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Rock"))
         {
-            int idx = Random.Range(0, clips.Count);
-
-            _audioSource.clip = clips[idx];
-            _audioSource.Play();
+            AudioManager.Instance.Play("ScrapingRock");
         }
     }
 
@@ -63,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Rock"))
         {
-            _audioSource.Stop();
+            AudioManager.Instance.Stop("ScrapingRock");
         }
     }
 

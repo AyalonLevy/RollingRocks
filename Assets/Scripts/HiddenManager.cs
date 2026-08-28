@@ -33,7 +33,10 @@ public class HiddenManager : MonoBehaviour
     {
         foreach (HiddenController hidden in hiddenElements)
         {
-            hidden.RevealTruth();
+            if (hidden != null)
+            {
+                hidden.RevealTruth();
+            }
         }
     }
 }

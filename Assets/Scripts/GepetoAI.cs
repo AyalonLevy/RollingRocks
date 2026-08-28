@@ -168,9 +168,15 @@ public class GepetoAI : MonoBehaviour
                 removedLead = false;
             }
 
+            if (!AudioManager.Instance.IsSourcePlaying("Typing"))
+            {
+                AudioManager.Instance.PlayRandomTypingSound();
+            }
+
             textField.text += c;
             textField.text += leadingChar;
             removedLead = true;
+
             yield return new WaitForSeconds(timeBetweenChars);
 
             ScrollToBottom();

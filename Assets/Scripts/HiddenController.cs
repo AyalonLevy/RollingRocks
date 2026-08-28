@@ -7,6 +7,7 @@ public class HiddenController : MonoBehaviour
     [SerializeField] private Sprite realTile;
 
     [Header("Hint Animation Settings")]
+    [SerializeField] private bool playHintAnimation = true;
     [SerializeField] private Animator animator;
     [SerializeField] private float animationInterval = 60.0f;
     [SerializeField] private float intervalShrinkingFactor = 5.0f;
@@ -14,7 +15,6 @@ public class HiddenController : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
     private float _intervalStartTime;
-    private bool _playHintAnimation = true;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,7 +36,7 @@ public class HiddenController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playHintAnimation)
+        if (playHintAnimation)
         {
             PlayAnimation();
         }
@@ -44,7 +44,11 @@ public class HiddenController : MonoBehaviour
 
     private void PlayAnimation()
     {
-        if (animator == null) return;
+        if (animator == null)
+        {
+            Debug.Log("No animator found");
+            return;
+        }
 
         if (Time.time - _intervalStartTime > animationInterval)
         {
@@ -58,14 +62,14 @@ public class HiddenController : MonoBehaviour
     {
         _spriteRenderer.sprite = fakeTile;
 
-        _playHintAnimation = true;
+        playHintAnimation = true;
 
         animator.gameObject.SetActive(true);
     }
 
     public void RevealTruth()
     {
-        _playHintAnimation = false;
+        playHintAnimation = false;
 
         animator.gameObject.SetActive(false);
 

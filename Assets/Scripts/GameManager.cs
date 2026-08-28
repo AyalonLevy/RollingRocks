@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject settingsMenu;
     public GepetoAI gepetoAI;
+    public Button continueButton;
 
     [HideInInspector] public GameData gameData;
 
-    private int _currentLevel = 0;
+    private int _currentLevel = 1;
+    private int availableLevels = 1;
     private int _totalScenes;  // Last scene will be the End of Game Scene
 
     private bool _isPaused = false;
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
 
                 // Save Settings
                 gameData.useWASD = _useWASD;
+                _currentLevel = gameData.maxUnlockedLevel;
                 SaveSystem.SaveData(gameData);
             }
         }
@@ -61,6 +65,22 @@ public class GameManager : MonoBehaviour
             // Only initialize the AI when it's in the main menu
             gepetoAI.InitializeAI("MainMenu");
         }
+
+        // Handle levels
+        availableLevels = SceneManager.sceneCountInBuildSettings;
+        Debug.Log($"There are {availableLevels} available scenes");
+
+        // Disable continue button if we never started the game - the maxlevel is less than 2
+        if (gameData.maxUnlockedLevel < 2 && continueButton != null)
+        {
+            continueButton.interactable = false;
+        }
+    }
+
+    private void Start()
+    {
+        // It is in the Start because the AudioMixer is not updated when it is in the Awake
+        settingsMenu.GetComponent<SettingsMenu>().SetVolumeFromData(gameData.musicVolume, gameData.sfxVolume);
     }
 
     public GameData GetGameData()
@@ -89,7 +109,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Load the most recent level
-            Debug.Log("Continue where we left off");
+            Debug.Log($"Continue where we left off, on level {gameData.maxUnlockedLevel}");
             SceneManager.LoadScene(gameData.maxUnlockedLevel);
         }
     }
@@ -122,14 +142,12 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-        Debug.Log("[GameManager] Go to Main Menu");
         SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartLevel()
     {
         _isPaused = false;
-        Debug.Log("[GameManager] Restarting level");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         // TODO: Do I need it here?
@@ -149,7 +167,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        _currentLevel++;
+        _currentLevel = Mathf.Min(_currentLevel + 1, availableLevels);
+
         // Save new level to game Data
         if (_currentLevel > gameData.maxUnlockedLevel)
         {
@@ -158,11 +177,14 @@ public class GameManager : MonoBehaviour
             SaveSystem.SaveData(gameData);
         }
 
-        Debug.Log("[GameManager] Load next level");
         Debug.Log($"Total scenes: {_totalScenes}");
         if (SceneManager.GetActiveScene().buildIndex == _totalScenes - 1)
         {
             Debug.Log("The last Scene!");
+        }
+        else
+        {
+            StartGame(false);
         }
     }
 
