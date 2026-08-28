@@ -102,15 +102,9 @@ public class LevelManager : MonoBehaviour
 
         if (allCompleted)
         {
-            Debug.Log("[LevelManageg] All tasks are completed, Level Finished!");
-
             StartCoroutine(EndLevelSequence());
 
             GameManager.Instance.EndLevel();
-        }
-        else
-        {
-            Debug.Log("[LevelManageg] Some tasks are not complete yet!");
         }
     }
 

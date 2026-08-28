@@ -18,12 +18,16 @@ public class GepetoAI : MonoBehaviour
 
     [Header("AI Settings")]
     [SerializeField] private int maxButtonClicks = 10;
+    [SerializeField] private Button helpButton;
+
+    public bool FinishedTyping {  get; private set; }
 
     private string writer;
 
-    private List<string> _chatTexts = new();
-    private List<string> _angryTexts = new();
+    private readonly List<string> _chatTexts = new();
+    private readonly List<string> _angryTexts = new();
     private string _introChatText;
+    private string _outroChatText;
     private int _chatIdx = 0;
     private int _buttonPressedCounter = 0;
 
@@ -32,6 +36,7 @@ public class GepetoAI : MonoBehaviour
     // Chat files location
     private const string ResourcesBasePath = "AI_Text"; // The folder inside Resources that has all the Chat text
     private const string IntroFileName = "Intro";       // The text that will be displayed at the start of the level
+    private const string OutroFileName = "Outro";       // The text that will be displayed at the end of the level
     private const string SequentialPrefix = "Chat_";    // The prefix to all the different chat text files
     private const string AngryFolder = "Angry";         // The folder where all the angry texts are located
     private const string AngryPrefix = "Angry_";        // The prefix to all the different angry text files
@@ -53,6 +58,7 @@ public class GepetoAI : MonoBehaviour
         string levelPath = $"{ResourcesBasePath}/{levelFolderName}";
 
         _introChatText = LoadTextFile($"{levelPath}/{IntroFileName}");
+        _outroChatText = LoadTextFile($"{levelPath}/{OutroFileName}");
 
         _chatTexts.Clear();
         int idx = 1;
@@ -118,6 +124,12 @@ public class GepetoAI : MonoBehaviour
     {
         if (textField != null)
         {
+            // If the Coroutine it will stop the old one and start a new one
+            if (_chatCoroutine != null)
+            {
+                StopCoroutine(_chatCoroutine);
+            }
+
             writer = text;
             textField.text = "";
 
@@ -125,8 +137,10 @@ public class GepetoAI : MonoBehaviour
         }
     }
 
-    IEnumerator TypeWriterTMP()
+    private IEnumerator TypeWriterTMP()
     {
+        FinishedTyping = false;
+
         textField.text = leadingCharBeforeDelay ? leadingChar : "";
 
         yield return new WaitForSeconds(delayBeforeStart);
@@ -143,7 +157,9 @@ public class GepetoAI : MonoBehaviour
 
                 if (textField.text.Length > 0 && removedLead)
                 {
-                    textField.text = textField.text.Substring(0, textField.text.Length - leadingChar.Length);
+                    //textField.text = textField.text.Substring(0, textField.text.Length - leadingChar.Length);
+                    // The line below is exactly like the line above - Good to know
+                    textField.text = textField.text[..^leadingChar.Length];
                     removedLead = false;
                 }
             }
@@ -164,7 +180,7 @@ public class GepetoAI : MonoBehaviour
 
             if (textField.text.Length > 0 && removedLead)
             {
-                textField.text = textField.text.Substring(0, textField.text.Length - leadingChar.Length);
+                textField.text = textField.text[..^leadingChar.Length];
                 removedLead = false;
             }
 
@@ -184,8 +200,10 @@ public class GepetoAI : MonoBehaviour
 
         if (leadingChar != "")
         {
-            textField.text = textField.text.Substring(0, textField.text.Length - leadingChar.Length);
+            textField.text = textField.text[..^leadingChar.Length];
         }
+
+        FinishedTyping = true;
     }
 
     private void ScrollToBottom()
@@ -196,15 +214,15 @@ public class GepetoAI : MonoBehaviour
 
     public void HelpRequired()
     {
-        // If the Coroutine it will stop the old one and start a new one
-        if (_chatCoroutine != null)
-        {
-            StopCoroutine(_chatCoroutine);
-        }
+        //// If the Coroutine it will stop the old one and start a new one
+        //if (_chatCoroutine != null)
+        //{
+        //    StopCoroutine(_chatCoroutine);
+        //}
 
-        // OR
+        //// OR
 
-        // Wait for the coroutine to stop and prevent the button from working - pop-up a angry message after a few attempts
+        //// Wait for the coroutine to stop and prevent the button from working - pop-up a angry message after a few attempts
 
         _buttonPressedCounter++;
 
@@ -228,5 +246,20 @@ public class GepetoAI : MonoBehaviour
 
             _chatIdx++;
         }
+    }
+
+    public void DisplayOutroText()
+    {
+        TypeChatText(_introChatText);
+    }
+
+    public void DisableButton()
+    {
+        helpButton.interactable = false;
+    }
+
+    public void EnableButton()
+    {
+        helpButton.interactable = true;
     }
 }

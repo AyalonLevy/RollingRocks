@@ -46,7 +46,7 @@ public class HiddenController : MonoBehaviour
     {
         if (animator == null)
         {
-            Debug.Log("No animator found");
+            Debug.Log("[HiddenController] No animator found");
             return;
         }
 

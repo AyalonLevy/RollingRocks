@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private int maxTimeStep = 3;
 
     private float _timeLeft;
-    private float _timeUpdateInterval = 1;
+    private readonly float _timeUpdateInterval = 1;
     private float _lastUpdate = 0;
 
     private void Awake()

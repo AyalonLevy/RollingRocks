@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1438c93b5a87f40bd63c77fcf3811c, type: 3}
+  m_Name: TunaCan
+  m_EditorClassIdentifier: Assembly-CSharp::CollactableSO
+  collectableName: Tuna Can
+  collectableDescription: This can of high quality Tuna is a remnant of the boat
+    of Captain Ahab that sank in the Atlantic in 1851.
+  sprite: {fileID: -1008702357, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}

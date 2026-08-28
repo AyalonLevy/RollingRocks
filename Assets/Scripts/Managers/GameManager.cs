@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,12 +11,14 @@ public class GameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GepetoAI gepetoAI;
     public Button continueButton;
+    public Animator transition;
+    public float transitionTime = 1.0f;
 
     [HideInInspector] public GameData gameData;
 
     private int _currentLevel = 1;
-    private int availableLevels = 1;
-    private int _totalScenes;  // Last scene will be the End of Game Scene
+    private int _totalScenes;  // First scene is Main Menu and last scene will be the End of Game Scene
+    private int _availableLevels;
 
     private bool _isPaused = false;
     public bool IsPaused { get { return _isPaused; } }
@@ -33,7 +36,6 @@ public class GameManager : MonoBehaviour
 
                 // Save Settings
                 gameData.useWASD = _useWASD;
-                _currentLevel = gameData.maxUnlockedLevel;
                 SaveSystem.SaveData(gameData);
             }
         }
@@ -54,21 +56,19 @@ public class GameManager : MonoBehaviour
         }
 
         _totalScenes = SceneManager.sceneCountInBuildSettings;
+        _availableLevels = _totalScenes - 2;
 
         // Load saved data and if there is none, create a new one
         gameData = SaveSystem.LoadData();
         gameData ??= new GameData();
         UseWASD = gameData.useWASD;
+        _currentLevel = gameData.maxUnlockedLevel;
 
         if (gepetoAI != null && SceneManager.GetActiveScene().buildIndex == 0)
         {
             // Only initialize the AI when it's in the main menu
             gepetoAI.InitializeAI("MainMenu");
         }
-
-        // Handle levels
-        availableLevels = SceneManager.sceneCountInBuildSettings;
-        Debug.Log($"There are {availableLevels} available scenes");
 
         // Disable continue button if we never started the game - the maxlevel is less than 2
         if (gameData.maxUnlockedLevel < 2 && continueButton != null)
@@ -80,7 +80,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // It is in the Start because the AudioMixer is not updated when it is in the Awake
-        settingsMenu.GetComponent<SettingsMenu>().SetVolumeFromData(gameData.musicVolume, gameData.sfxVolume);
+        if (settingsMenu != null)
+        {
+            settingsMenu.GetComponent<SettingsMenu>().SetVolumeFromData(gameData.musicVolume, gameData.sfxVolume);
+        }
     }
 
     public GameData GetGameData()
@@ -103,14 +106,14 @@ public class GameManager : MonoBehaviour
         if (isNewGame)
         {
             // Load the first level
-            Debug.Log("Start from the beginning");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(LoadLevel(1));
         }
         else
         {
             // Load the most recent level
-            Debug.Log($"Continue where we left off, on level {gameData.maxUnlockedLevel}");
-            SceneManager.LoadScene(gameData.maxUnlockedLevel);
+            _currentLevel = Mathf.Min(_totalScenes - 1, _currentLevel);
+            Debug.Log($"Starting from level: {_currentLevel}");
+            StartCoroutine(LoadLevel(_currentLevel));
         }
     }
 
@@ -142,13 +145,14 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        StartCoroutine(LoadLevel(0));
     }
 
     public void RestartLevel()
     {
         _isPaused = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
 
         // TODO: Do I need it here?
         InitLevel();
@@ -158,18 +162,11 @@ public class GameManager : MonoBehaviour
     {
         HiddenManager.Instance.RevealAll();
         // ToDO:
-        // 1. Pause game
-        // 2. (?) Play an outro message from the AI -> this means not stopping the time (which is fine)
-        // 3. (?) Start a victory dance
+        gepetoAI.DisplayOutroText();
 
-        _isPaused = true;
-    }
+        _currentLevel = Math.Min(_currentLevel + 1, _availableLevels);
 
-    public void LoadNextLevel()
-    {
-        _currentLevel = Mathf.Min(_currentLevel + 1, availableLevels);
-
-        // Save new level to game Data
+        // Save new level to Game Data -> even if not playing the next level, it is unlocked
         if (_currentLevel > gameData.maxUnlockedLevel)
         {
             gameData.maxUnlockedLevel = _currentLevel;
@@ -177,15 +174,23 @@ public class GameManager : MonoBehaviour
             SaveSystem.SaveData(gameData);
         }
 
-        Debug.Log($"Total scenes: {_totalScenes}");
-        if (SceneManager.GetActiveScene().buildIndex == _totalScenes - 1)
-        {
-            Debug.Log("The last Scene!");
-        }
-        else
-        {
-            StartGame(false);
-        }
+        _isPaused = true;
+    }
+
+    public void LoadNextLevel()
+    {
+        
+
+        StartCoroutine(LoadLevel(_currentLevel));
+    }
+
+    private IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelIndex);
     }
 
     public void QuitGame()

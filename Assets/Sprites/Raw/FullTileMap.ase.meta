@@ -127,7 +127,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: FullTileMap
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -136,7 +136,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 256
-      height: 256
+      height: 128
     spriteID: 237c2aff2d3895348a6fa97c1114f682
     spriteBone: []
     spriteOutline: []
@@ -166,9 +166,9 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: -128
+        y: 0
         width: 256
-        height: 256
+        height: 128
       spriteId: 237c2aff2d3895348a6fa97c1114f682
     linkedCells: []
     tileCells: []
@@ -178,5 +178,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 512, y: 512}
+  previousTextureSize: {x: 512, y: 256}
   canvasSize: {x: 256, y: 128}
