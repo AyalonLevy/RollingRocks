@@ -68,15 +68,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: ScrapingRock
-    clip: {fileID: 8300000, guid: fc56ec08c2e004a4998303d3960cae55, type: 3}
-    audioMixerGroup: {fileID: 2193367584748641580, guid: 742c93632e4e11041814bc2418c69fef, type: 2}
-    volume: 0.5
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
   - name: Success
     clip: {fileID: 8300000, guid: b996caa411239e248a5479b7f3f6dede, type: 3}
+    audioMixerGroup: {fileID: 2193367584748641580, guid: 742c93632e4e11041814bc2418c69fef, type: 2}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CollectItem
+    clip: {fileID: 8300000, guid: 54d429ee1c15bf845a437e9cce001d8e, type: 3}
     audioMixerGroup: {fileID: 2193367584748641580, guid: 742c93632e4e11041814bc2418c69fef, type: 2}
     volume: 0.8
     pitch: 1
