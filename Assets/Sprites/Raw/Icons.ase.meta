@@ -127,7 +127,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Icons
     originalName: 
-    pivot: {x: 0.57272726, y: -0.033333335}
+    pivot: {x: 0.57272726, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -136,7 +136,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 110
-      height: 30
+      height: 31
     spriteID: 6ccd29def328bea47ac49a3c80e6c239
     spriteBone: []
     spriteOutline: []
@@ -166,9 +166,9 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 1
-        y: 1
+        y: 0
         width: 110
-        height: 30
+        height: 31
       spriteId: 6ccd29def328bea47ac49a3c80e6c239
     linkedCells: []
     tileCells: []

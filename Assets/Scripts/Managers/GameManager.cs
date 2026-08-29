@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject settingsMenu;
     public GameObject levelSelectPanel;
+    public GameObject CollectionPanel;
     public GepetoAI gepetoAI;
     public Button continueButton;
     public Animator transition;
@@ -209,6 +210,17 @@ public class GameManager : MonoBehaviour
     public void CloseLevelSelector()
     {
         levelSelectPanel.SetActive(false);
+    }
+
+    public void OpenCollection()
+    {
+        CollectionPanel.SetActive(true);
+        CollectionManager.Instance.DisplayCollection();
+    }
+
+    public void CloseCollection()
+    {
+        CollectionPanel.SetActive(false);
     }
 
     public void QuitGame()
