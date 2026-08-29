@@ -9,16 +9,20 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameObject settingsMenu;
+    public GameObject levelSelectPanel;
     public GepetoAI gepetoAI;
     public Button continueButton;
     public Animator transition;
     public float transitionTime = 1.0f;
+
 
     [HideInInspector] public GameData gameData;
 
     private int _currentLevel = 1;
     private int _totalScenes;  // First scene is Main Menu and last scene will be the End of Game Scene
     private int _availableLevels;
+
+    public int AvailableLevels { get { return _availableLevels; } }
 
     private bool _isPaused = false;
     public bool IsPaused { get { return _isPaused; } }
@@ -179,9 +183,13 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        
-
         StartCoroutine(LoadLevel(_currentLevel));
+    }
+
+    public void LoadCustomLevel(int level)
+    {
+        Debug.Log($"Loading level {level}");
+        StartCoroutine(LoadLevel(level));
     }
 
     private IEnumerator LoadLevel(int levelIndex)
@@ -193,10 +201,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
     }
 
+    public void OpenLevelSelector()
+    {
+        levelSelectPanel.SetActive(true);
+    }
+
+    public void CloseLevelSelector()
+    {
+        levelSelectPanel.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Debug.Log("[GameManager] Exit Game");
         Application.Quit();
     }
-
 }
