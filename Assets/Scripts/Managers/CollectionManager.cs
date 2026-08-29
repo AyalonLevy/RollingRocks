@@ -82,7 +82,7 @@ public class CollectionManager : MonoBehaviour
 
             if (go.TryGetComponent<CollectionItem>(out var ci))
             {
-                ci.SetIcon(playerCollection[i].sprite);
+                ci.SetCollectable(playerCollection[i]);
             }
             
 
