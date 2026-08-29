@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e1438c93b5a87f40bd63c77fcf3811c, type: 3}
-  m_Name: OldNews
+  m_Name: CupOfJoe
   m_EditorClassIdentifier: Assembly-CSharp::CollectableSO
-  collectableName: Old Newspaper
-  collectableDescription: This newspaper from 1957 contains an article describing
-    the Swiss Spaghetti harvest. According to the article, this tree bears fruit
-    (well technically it's not a fruit) once every 800 years!
-  sprite: {fileID: -1355147897, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
+  collectableName: Cup of Joe
+  collectableDescription: This is a cup of endless coffee. This coffee comes from
+    the elemental planes of the holy coffee. Discovered by a dude named Joe, hence
+    the name.
+  sprite: {fileID: 698686154, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
