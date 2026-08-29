@@ -43,22 +43,6 @@ public class PlayerMovement : MonoBehaviour
         _rb.MovePosition(_rb.position + moveSpeed * Time.fixedDeltaTime * _movement);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Rock"))
-        {
-            AudioManager.Instance.Play("ScrapingRock");
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Rock"))
-        {
-            AudioManager.Instance.Stop("ScrapingRock");
-        }
-    }
-
     public void Move(InputAction.CallbackContext context)
     {
         if (GameManager.Instance.IsPaused) return;

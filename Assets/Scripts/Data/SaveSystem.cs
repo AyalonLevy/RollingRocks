@@ -48,7 +48,7 @@ public static class SaveSystem
         }
         else
         {
-            Debug.LogError($"Save file not found in {path}");
+            Debug.Log($"[SaveSystem] Save file not found in {path}, creating new one");
             return null;
         }
     }

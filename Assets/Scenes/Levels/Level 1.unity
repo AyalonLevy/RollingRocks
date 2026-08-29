@@ -2728,17 +2728,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6245516317120885474, guid: 96951739ea92c024a8f4210991505b6f, type: 3}
   m_PrefabInstance: {fileID: 7348344856788451272}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &280942992 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8441236312756312280, guid: 96951739ea92c024a8f4210991505b6f, type: 3}
-  m_PrefabInstance: {fileID: 7348344856788451272}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf77d7172ece4c4eac4e2e29dbb1f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &361839442
 GameObject:
   m_ObjectHideFlags: 0
@@ -3366,9 +3355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e584763069b7ecc4484c14f5d51fe578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  hiddenElements:
-  - {fileID: 1405382592}
-  - {fileID: 280942992}
+  hiddenContainer: {fileID: 1208189523}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5527,17 +5514,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8725236311617480589, guid: 7022950705ec0c540bd6e96b1b828fac, type: 3}
   m_PrefabInstance: {fileID: 1405382590}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1405382592 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1306688333563772003, guid: 7022950705ec0c540bd6e96b1b828fac, type: 3}
-  m_PrefabInstance: {fileID: 1405382590}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c74daee7ac12914f8e4d83e85c33b84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1001 &1414773777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6055,7 +6031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1779367372}
   m_Layer: 0
-  m_Name: DemiTargets
+  m_Name: FakeElements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7091,14 +7067,6 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1686694531}
-    - target: {fileID: 2666531448446831652, guid: fe7625703cb5edc46a9b27f00ed81c00, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleGameState
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666531448446831652, guid: fe7625703cb5edc46a9b27f00ed81c00, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleGameState
-      objectReference: {fileID: 0}
     - target: {fileID: 3742238246627154836, guid: fe7625703cb5edc46a9b27f00ed81c00, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7

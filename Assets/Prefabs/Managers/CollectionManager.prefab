@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa191ccf2ea4e64e96d2833ca313492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectionManager
+  collectionDB: {fileID: 11400000, guid: ef75f6b91841b1d4bbb05345b5312ea7, type: 2}
+  collectionItemPrefab: {fileID: 0}
+  grid: {fileID: 0}
   playerCollection: []

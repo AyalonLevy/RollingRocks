@@ -7,22 +7,22 @@ public class GameData
     public bool useWASD;
     public float musicVolume;
     public float sfxVolume;
-    public List<CollectableSO> playerCollectabels;
+    public List<string> collectedItemIDs;
 
-    public GameData(int maxUnlockedLevel = 1, bool useWASD = false, float musicVolume = 0.5f, float sfxVolume = 0.8f, List<CollectableSO> playerCollection = null)
+    public GameData(int maxUnlockedLevel = 1, bool useWASD = false, float musicVolume = 0.5f, float sfxVolume = 0.8f, List<string> collectedItemIDs = null)
     {
         this.maxUnlockedLevel = maxUnlockedLevel;
         this.useWASD = useWASD;
         this.musicVolume = musicVolume;
         this.sfxVolume = sfxVolume;
 
-        if (playerCollection == null)
+        if (collectedItemIDs == null)
         {
-            this.playerCollectabels = new List<CollectableSO>();
+            this.collectedItemIDs = new List<string>();
         }
         else
         {
-            this.playerCollectabels = playerCollection;
+            this.collectedItemIDs = collectedItemIDs;
         }
     }
 }

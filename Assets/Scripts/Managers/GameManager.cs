@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
         // ToDO:
         gepetoAI.DisplayOutroText();
 
-        _currentLevel = Math.Min(_currentLevel + 1, _availableLevels);
+        _currentLevel = Math.Min(SceneManager.GetActiveScene().buildIndex + 1, _totalScenes);
 
         // Save new level to Game Data -> even if not playing the next level, it is unlocked
         if (_currentLevel > gameData.maxUnlockedLevel)

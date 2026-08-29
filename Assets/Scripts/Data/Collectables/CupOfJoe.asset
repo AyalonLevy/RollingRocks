@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1438c93b5a87f40bd63c77fcf3811c, type: 3}
   m_Name: CupOfJoe
   m_EditorClassIdentifier: Assembly-CSharp::CollectableSO
-  collectableName: Cup of Joe
-  collectableDescription: This is a cup of endless coffee. This coffee comes from
-    the elemental planes of the holy coffee. Discovered by a dude named Joe, hence
-    the name.
-  sprite: {fileID: 698686154, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
+  itemID: 3
+  displayName: Cup of Joe
+  itemDescription: This is a cup of endless coffee. This coffee comes from the elemental
+    planes of the holy coffee. Discovered by a dude named Joe, hence the name.
+  icon: {fileID: 698686154, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}

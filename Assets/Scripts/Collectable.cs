@@ -14,14 +14,16 @@ public class Collectable : MonoBehaviour
 
         if (_spriteRenderer == null) return;
 
-        _spriteRenderer.sprite = collectable.sprite;
+        _spriteRenderer.sprite = collectable.icon;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"{collectable.collectableName} Collectable: {collision.name}");
-        CollectionManager.Instance.Collect(collectable);
+        if (collision.CompareTag("Player"))
+        {
+            CollectionManager.Instance.Collect(collectable);
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

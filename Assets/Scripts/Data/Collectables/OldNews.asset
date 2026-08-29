@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1438c93b5a87f40bd63c77fcf3811c, type: 3}
   m_Name: OldNews
   m_EditorClassIdentifier: Assembly-CSharp::CollectableSO
-  collectableName: Old Newspaper
-  collectableDescription: This newspaper from 1957 contains an article describing
-    the Swiss Spaghetti harvest. According to the article, this tree bears fruit
-    (well technically it's not a fruit) once every 800 years!
-  sprite: {fileID: -1355147897, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
+  itemID: 2
+  displayName: A Paper of Old News
+  itemDescription: This newspaper from 1957 contains an article describing the Swiss
+    Spaghetti harvest. According to the article, this tree bears fruit (well technically
+    it's not a fruit) once every 800 years!
+  icon: {fileID: -1355147897, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}

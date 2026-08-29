@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1438c93b5a87f40bd63c77fcf3811c, type: 3}
   m_Name: TunaCan
   m_EditorClassIdentifier: Assembly-CSharp::CollactableSO
-  collectableName: Tuna Can
-  collectableDescription: This can of high quality Tuna is a remnant of the boat
-    of Captain Ahab that sank in the Atlantic in 1851.
-  sprite: {fileID: -1008702357, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
+  itemID: 1
+  displayName: A Tune Can
+  itemDescription: This can of high quality Tuna is a remnant of the boat of Captain
+    Ahab that sank in the Atlantic in 1851.
+  icon: {fileID: -1008702357, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}

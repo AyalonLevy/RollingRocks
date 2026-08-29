@@ -4,9 +4,8 @@ using UnityEngine;
 public class CollectableSO : ScriptableObject
 {
     [Header("Collectable Stats")]
-
-    public string collectableName;
+    public string displayName;
     [TextArea(3, 10)]
-    public string collectableDescription;
-    public Sprite sprite;
+    public string itemDescription;
+    public Sprite icon;
 }

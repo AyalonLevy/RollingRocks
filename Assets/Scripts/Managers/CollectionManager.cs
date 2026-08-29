@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CollectionManager : MonoBehaviour
 {
     public static CollectionManager Instance { get; private set; }
 
     [Header("Display Collection Settings")]
+    [SerializeField] private CollectableDatabaseSO collectionDB;
     [SerializeField] private GameObject collectionItemPrefab;
     [SerializeField] private Transform grid;
 
     [HideInInspector]
-    public List<CollectableSO> playerCollection;
+    public List<CollectableSO> playerCollection = new();
 
     private void Awake()
     {
@@ -23,50 +23,55 @@ public class CollectionManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        playerCollection.Clear();
     }
 
     public void Collect(CollectableSO collectedItem)
     {
-        Debug.Log($"Collected {collectedItem.collectableName}");
         if (playerCollection.Contains(collectedItem))
         {
-            Debug.Log($"Already collected {collectedItem.collectableName}!");
             return;
         }
 
         playerCollection.Add(collectedItem);
 
-        SaveCollection(playerCollection);
+        SaveCollection();
     }
 
-    public void SaveCollection(List<CollectableSO> collection)
+    public void SaveCollection()
     {
         GameData gameData = GameManager.Instance.GetGameData();
 
-        gameData.playerCollectabels = collection;
+        foreach (CollectableSO item in playerCollection)
+        {
+            if (!gameData.collectedItemIDs.Contains(item.displayName))
+            {
+                gameData.collectedItemIDs.Add(item.displayName);
 
+            }
+        }
+
+        Debug.Log($"Current Collection has {gameData.collectedItemIDs.Count} items");
         SaveSystem.SaveData(gameData);
     }
 
-    public void LoadCollection(List<CollectableSO> collection)
+    public void LoadCollection()
     {
-        if (collection == null)
+        GameData gameData = GameManager.Instance.GetGameData();
+
+        foreach (string id in gameData.collectedItemIDs)
         {
-            playerCollection = new List<CollectableSO>();
-        }
-        else
-        {
-            playerCollection.AddRange(collection);
+            CollectableSO collectable = collectionDB.GetCollectableByID(id);
+
+            if (collectable != null)
+            {
+                playerCollection.Add(collectable);
+            }
         }
     }
 
     public void DisplayCollection()
     {
-        LoadCollection(GameManager.Instance.GetGameData().playerCollectabels);
-
-        Debug.Log($"I have collected {playerCollection.Count} items, I'm going to display them under {grid.name}");
+        LoadCollection();
 
         // Clean up previous populated grid
         foreach (Transform child in grid)
@@ -78,38 +83,12 @@ public class CollectionManager : MonoBehaviour
         for (int i = 0; i < playerCollection.Count; i++)
         {
             GameObject go = Instantiate(collectionItemPrefab, grid);
-            go.name = playerCollection[i].collectableName;
+            go.name = playerCollection[i].displayName;
 
             if (go.TryGetComponent<CollectionItem>(out var ci))
             {
                 ci.SetCollectable(playerCollection[i]);
             }
-            
-
-            //TMP_Text[] textComponents = go.GetComponentsInChildren<TMP_Text>();
-
-            //// Set the text
-            //foreach (TMP_Text textComponent in textComponents)
-            //{
-            //    if (textComponent != null)
-            //    {
-            //        textComponent.text = (i + 1).ToString();
-            //    }
-            //}
-
-            //// Set the button functionality
-            //int buttonIdx = i + 1;
-            //if (go.TryGetComponent<Button>(out var levelButton))
-            //{
-            //    levelButton.onClick.AddListener(() => GameManager.Instance.LoadCustomLevel(buttonIdx));
-            //}
-
-            //// Set button to inactive if level wasan't unlocked yet
-            //if (buttonIdx > gameData.maxUnlockedLevel)
-            //{
-            //    levelButton.interactable = false;
-            //}
-
         }
     }
 }

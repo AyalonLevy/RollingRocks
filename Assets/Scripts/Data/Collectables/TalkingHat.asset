@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1438c93b5a87f40bd63c77fcf3811c, type: 3}
   m_Name: TalkingHat
   m_EditorClassIdentifier: Assembly-CSharp::CollectableSO
-  collectableName: A talking Hat
-  collectableDescription: This hat is really into houses, all it talks about is finding
+  itemID: 5
+  displayName: A Talking Hat
+  itemDescription: This hat is really into houses, all it talks about is finding
     the perfect house for you! Oh lucky you!
-  sprite: {fileID: 1566747828, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
+  icon: {fileID: 1566747828, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}

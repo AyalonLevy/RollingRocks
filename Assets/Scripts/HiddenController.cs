@@ -62,7 +62,7 @@ public class HiddenController : MonoBehaviour
     {
         _spriteRenderer.sprite = fakeTile;
 
-        playHintAnimation = true;
+        //playHintAnimation = true;
 
         animator.gameObject.SetActive(true);
     }

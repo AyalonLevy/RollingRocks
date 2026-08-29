@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1438c93b5a87f40bd63c77fcf3811c, type: 3}
   m_Name: Pumpkin
   m_EditorClassIdentifier: Assembly-CSharp::CollectableSO
-  collectableName: A Royal Pumpkin
-  collectableDescription: Rumor has it that this pumpkin was a very important carriage,
+  itemID: 6
+  displayName: A royal Pumpkin
+  itemDescription: Rumor has it that this pumpkin was a very important carriage,
     however after an incident with a shoe it was dishonorably discharged.
-  sprite: {fileID: -1519366010, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
+  icon: {fileID: -1519366010, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}

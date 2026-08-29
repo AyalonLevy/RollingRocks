@@ -7,7 +7,9 @@ public class HiddenManager : MonoBehaviour
     public static HiddenManager Instance { get; private set; }
 
     [Header("Hidden Elements")]
-    [SerializeField] private List<HiddenController> hiddenElements;
+    [SerializeField] GameObject hiddenContainer;
+
+    private HiddenController[] hiddenElements;
 
     private void Awake()
     {
@@ -19,6 +21,8 @@ public class HiddenManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        hiddenElements = hiddenContainer.GetComponentsInChildren<HiddenController>(true);
     }
 
     public void HideAll()

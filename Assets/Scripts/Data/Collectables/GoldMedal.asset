@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1438c93b5a87f40bd63c77fcf3811c, type: 3}
   m_Name: GoldMedal
   m_EditorClassIdentifier: Assembly-CSharp::CollectableSO
-  collectableName: Curling Gold Medal
-  collectableDescription: This is from the very first Olympic curling tournament,
-    introduced at the 1924 Winter Games in Chamonix.
-  sprite: {fileID: 1706871340, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
+  itemID: 4
+  displayName: Curling Gold Medal
+  itemDescription: This is from the very first Olympic curling tournament, introduced
+    at the 1924 Winter Games in Chamonix.
+  icon: {fileID: 1706871340, guid: 3fed025ea52c2f5449281e479d3949dd, type: 3}
