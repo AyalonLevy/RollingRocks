@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Load the most recent level
-            _currentLevel = Mathf.Min(_totalScenes - 1, _currentLevel);
+            _currentLevel = Mathf.Min(_availableLevels, _currentLevel);
             Debug.Log($"Starting from level: {_currentLevel}");
             StartCoroutine(LoadLevel(_currentLevel));
         }

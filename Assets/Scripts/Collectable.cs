@@ -22,6 +22,7 @@ public class Collectable : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             CollectionManager.Instance.Collect(collectable);
+            AudioManager.Instance.Play("CollectItem");
 
             Destroy(gameObject);
         }
