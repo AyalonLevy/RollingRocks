@@ -8,41 +8,41 @@ public static class SaveSystem
     {
         BinaryFormatter formatter = new();
 
-        string path = Application.dataPath + "/game.data";
-        //string path = Application.persistentDataPath + "/game.data";
+        //string path = Application.dataPath + "/game.data";
+        string path = Application.persistentDataPath + "/game.data";
 
-        // --- DEBUGGING ---
-        string json = JsonUtility.ToJson(gameData);
-        using StreamWriter writer = new(path);
-        writer.Write(json);
-        // -----------------
+        //// --- DEBUGGING ---
+        //string json = JsonUtility.ToJson(gameData);
+        //using StreamWriter writer = new(path);
+        //writer.Write(json);
+        //// -----------------
 
-        //FileStream stream = new(path, FileMode.Create);
+        FileStream stream = new(path, FileMode.Create);
 
-        //GameData data = new(gameData.maxUnlockedLevel, gameData.useWASD, gameData.muteMusic, gameData.muteEffects);
+        //GameData data = new(gameData.maxUnlockedLevel, gameData.useWASD, gameData.musicVolume, gameData.sfxVolume, gameData.collectedItemIDs);
 
-        //formatter.Serialize(stream, data);
-        //stream.Close();
+        formatter.Serialize(stream, gameData);
+        stream.Close();
     }
 
     public static GameData LoadData()
     {
-        string path = Application.dataPath + "/game.data";
-        //string path = Application.persistentDataPath + "/game.data";
+        //string path = Application.dataPath + "/game.data";
+        string path = Application.persistentDataPath + "/game.data";
 
         if (File.Exists(path))
         {
-            // --- DEBUGGING ---
-            using StreamReader reader = new(path);
-            string json = reader.ReadToEnd();
-            GameData data = JsonUtility.FromJson<GameData>(json);
-            // -----------------
+            //// --- DEBUGGING ---
+            //using StreamReader reader = new(path);
+            //string json = reader.ReadToEnd();
+            //GameData data = JsonUtility.FromJson<GameData>(json);
+            //// -----------------
 
-            //BinaryFormatter formatter = new();
-            //FileStream stream = new(path, FileMode.Open);
+            BinaryFormatter formatter = new();
+            FileStream stream = new(path, FileMode.Open);
 
-            //GameData data = formatter.Deserialize(stream) as GameData;
-            //stream.Close();
+            GameData data = formatter.Deserialize(stream) as GameData;
+            stream.Close();
 
             return data;
         }

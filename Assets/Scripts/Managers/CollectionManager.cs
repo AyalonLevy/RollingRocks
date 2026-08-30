@@ -50,7 +50,6 @@ public class CollectionManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"Current Collection has {gameData.collectedItemIDs.Count} items");
         SaveSystem.SaveData(gameData);
     }
 

@@ -188,7 +188,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadCustomLevel(int level)
     {
-        Debug.Log($"Loading level {level}");
         StartCoroutine(LoadLevel(level));
     }
 
