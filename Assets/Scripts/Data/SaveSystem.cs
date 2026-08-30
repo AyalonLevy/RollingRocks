@@ -1,55 +1,25 @@
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class SaveSystem
 {
+    private const string SaveKey = "GameData";
+
     public static void SaveData(GameData gameData)
     {
-        BinaryFormatter formatter = new();
-
-        //string path = Application.dataPath + "/game.data";
-        string path = Application.persistentDataPath + "/game.data";
-
-        //// --- DEBUGGING ---
-        //string json = JsonUtility.ToJson(gameData);
-        //using StreamWriter writer = new(path);
-        //writer.Write(json);
-        //// -----------------
-
-        FileStream stream = new(path, FileMode.Create);
-
-        //GameData data = new(gameData.maxUnlockedLevel, gameData.useWASD, gameData.musicVolume, gameData.sfxVolume, gameData.collectedItemIDs);
-
-        formatter.Serialize(stream, gameData);
-        stream.Close();
+        string json = JsonUtility.ToJson(gameData);
+        PlayerPrefs.SetString(SaveKey, json);
+        PlayerPrefs.Save();
     }
 
     public static GameData LoadData()
     {
-        //string path = Application.dataPath + "/game.data";
-        string path = Application.persistentDataPath + "/game.data";
-
-        if (File.Exists(path))
+        if (PlayerPrefs.HasKey(SaveKey))
         {
-            //// --- DEBUGGING ---
-            //using StreamReader reader = new(path);
-            //string json = reader.ReadToEnd();
-            //GameData data = JsonUtility.FromJson<GameData>(json);
-            //// -----------------
-
-            BinaryFormatter formatter = new();
-            FileStream stream = new(path, FileMode.Open);
-
-            GameData data = formatter.Deserialize(stream) as GameData;
-            stream.Close();
-
-            return data;
+            string json = PlayerPrefs.GetString(SaveKey);
+            return JsonUtility.FromJson<GameData>(json);
         }
-        else
-        {
-            Debug.Log($"[SaveSystem] Save file not found in {path}, creating new one");
-            return null;
-        }
+
+        Debug.Log("[SaveSystem] Save not found, creating new one");
+        return null;
     }
 }

@@ -3827,7 +3827,7 @@ PrefabInstance:
     - target: {fileID: 728545305890123049, guid: cce0e7b5eb8bf8f4fb82b33582d10e80, type: 3}
       propertyPath: collectable
       value: 
-      objectReference: {fileID: 11400000, guid: b635b7bf5d37411458a0247095d1f9d2, type: 2}
+      objectReference: {fileID: 11400000, guid: 0c28244bed4e29b4f832a6242f7c1c0c, type: 2}
     - target: {fileID: 1447358819740876562, guid: cce0e7b5eb8bf8f4fb82b33582d10e80, type: 3}
       propertyPath: m_Name
       value: Collectable
